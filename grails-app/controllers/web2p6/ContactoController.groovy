@@ -104,4 +104,28 @@ class ContactoController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def agregar_relacion() {
+        render(view: 'agregar_relacion', model:[
+                'contactos':Contacto.list(),
+                'departamentos':Departamento.list()
+        ])
+    }
+
+    def formAgregarRelacion() {
+        def cont_id = Integer.parseInt((String)params.get("contacto"))
+        def dept_id = Integer.parseInt((String)params.get("departamento"))
+
+        Contacto u = Contacto.findById(cont_id)
+        Departamento d = Departamento.findById(dept_id)
+
+        PertenenciaDepartamento pd = new PertenenciaDepartamento(contacto: u, departamento: d, activo: true)
+        pd.validate()
+
+        if(!pd.hasErrors()) {
+            pd.save(flush: true)
+        }
+
+        redirect(action: 'index', controller: 'contacto')
+    }
 }

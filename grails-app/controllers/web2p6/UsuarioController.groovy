@@ -104,4 +104,28 @@ class UsuarioController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def agregar_permiso() {
+        render(view: 'agregar_permiso', model:[
+            'usuarios':Usuario.list(),
+            'departamentos':Departamento.list()
+        ])
+    }
+
+    def formAgregarPermiso() {
+        def user_id = Integer.parseInt((String)params.get("usuario"))
+        def dept_id = Integer.parseInt((String)params.get("departamento"))
+
+        Usuario u = Usuario.findById(user_id)
+        Departamento d = Departamento.findById(dept_id)
+
+        PermisoDepartamento pd = new PermisoDepartamento(usuario: u, departamento: d, activo: true)
+        pd.validate()
+
+        if(!pd.hasErrors()) {
+            pd.save(flush: true)
+        }
+
+        redirect(action: 'index', controller: 'usuario')
+    }
 }

@@ -5,7 +5,7 @@ class Departamento {
     String nombre
 
     static constraints = {
-        nombre(blank: false)
+        nombre(blank: false, unique: true)
     }
 
     static mapping = {

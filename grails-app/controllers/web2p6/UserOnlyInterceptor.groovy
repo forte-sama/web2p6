@@ -5,6 +5,7 @@ class UserOnlyInterceptor {
 
     UserOnlyInterceptor() {
         match(controller: 'contacto')
+        match(controller: 'departamento')
     }
 
     boolean before() {

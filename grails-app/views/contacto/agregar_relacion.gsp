@@ -18,6 +18,24 @@
                 <h1>Agregar contacto a departamento:</h1>
             </div>
             <div class = "panel-body">
+                <g:if test="${flash.message}">
+                    <br>
+                    <div class="alert alert-success">
+                        <b>${flash.message}</b>
+                    </div>
+                    <br>
+                    <br>
+                </g:if>
+                <g:else>
+                    <br>
+                    <g:if test="${flash.error}">
+                        <siv class="alert alert-danger">
+                            <b>${flash.error}</b>
+                        </siv>
+                    </g:if>
+                    <br>
+                    <br>
+                </g:else>
                 <g:form controller="contacto" action="formAgregarRelacion">
                     <div class="row">
                         <div class = "col col-md-6 col-md-offset-3">

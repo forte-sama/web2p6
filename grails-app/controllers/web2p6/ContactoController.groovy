@@ -124,8 +124,13 @@ class ContactoController {
 
         if(!pd.hasErrors()) {
             pd.save(flush: true)
+
+            flash.message = "${u.email} fue agregado como contacto en ${d.nombre}."
+        }
+        else {
+            flash.error = "Ya ${u.email} es un contacto de ${d.nombre}. No es posible duplicar."
         }
 
-        redirect(action: 'index', controller: 'contacto')
+        redirect(controller: 'contacto', action: 'agregar_relacion')
     }
 }

@@ -8,8 +8,6 @@
 <body>
 
 <div class="container" id="contenedorCrearUsuario">
-
-
     <div class = "col col-md-6 col-md-offset-3">
         <br>
         <br>
@@ -18,6 +16,24 @@
                 <h1>Agregar permiso a departamentos:</h1>
             </div>
             <div class = "panel-body">
+                <g:if test="${flash.message}">
+                    <br>
+                    <div class="alert alert-success">
+                        <b>${flash.message}</b>
+                    </div>
+                    <br>
+                    <br>
+                </g:if>
+                <g:else>
+                    <br>
+                    <g:if test="${flash.error}">
+                        <siv class="alert alert-danger">
+                            <b>${flash.error}</b>
+                        </siv>
+                    </g:if>
+                    <br>
+                    <br>
+                </g:else>
                 <g:form controller="usuario" action="formAgregarPermiso">
                     <div class="row">
                         <div class = "col col-md-6 col-md-offset-3">
@@ -35,11 +51,9 @@
                     <br>
                     <g:actionSubmit value="Dar Permiso" action="formAgregarPermiso" class="btn btn-success btn-block btn-lg"/>
                 </g:form>
-                <br>
             </div>
         </div>
     </div>
-
 </div>
 <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>

@@ -124,8 +124,13 @@ class UsuarioController {
 
         if(!pd.hasErrors()) {
             pd.save(flush: true)
+
+            flash.message = "Permiso para ${u.email} en ${d.nombre} creado."
+        }
+        else {
+            flash.error = "Ya usuario ${u.email} tiene acceso a ${d.nombre}."
         }
 
-        redirect(action: 'index', controller: 'usuario')
+        redirect(controller: 'usuario', action: 'agregar_permiso')
     }
 }

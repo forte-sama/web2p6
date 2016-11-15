@@ -104,4 +104,17 @@ class DepartamentoController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def lista_contactos(Departamento d) {
+        def model = [:]
+
+        if(d) {
+            List<PertenenciaDepartamento> pd = PertenenciaDepartamento.findAllByDepartamento(d)
+
+            model['relaciones'] = pd
+            model['departamento'] = d
+        }
+
+        render(view: 'lista_contactos', model: model)
+    }
 }

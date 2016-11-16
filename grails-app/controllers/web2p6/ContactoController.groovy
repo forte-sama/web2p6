@@ -113,8 +113,8 @@ class ContactoController {
     }
 
     def formAgregarRelacion() {
-        def cont_id = Integer.parseInt((String)params.get("contacto"))
-        def dept_id = Integer.parseInt((String)params.get("departamento"))
+        Integer cont_id = Integer.parseInt((String)params.get("contacto"))
+        Integer dept_id = Integer.parseInt((String)params.get("departamento"))
 
         Contacto u = Contacto.findById(cont_id)
         Departamento d = Departamento.findById(dept_id)

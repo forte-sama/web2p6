@@ -9,9 +9,10 @@ class UserOnlyInterceptor {
     }
 
     boolean before() {
+
         //si es el controlador de contacto, solo verificar si esta loggeado
         if(params.controller == 'contacto') {
-            return session.user ? true : false
+            return session.user ? true : redirect(url: '/')
         }
         else {
             if (session.user) {

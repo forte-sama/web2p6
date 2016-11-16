@@ -10,9 +10,14 @@ class Contacto {
     String ocupacion
     Categoria categoria
 
+    String creadoPor
+    Date dateCreated
+    Date lastUpdated
+
     static hasMany = [relaciones: PertenenciaDepartamento]
 
     static constraints = {
+        creadoPor(blank: false, display: false)
         email(email: true, validator: {val,obj ->
             Contacto c = Contacto.findByEmail(val)
 

@@ -9,6 +9,7 @@ class BootStrap {
         admin.setEmail("admin@admin.com")
         admin.setPassword("admin")
         admin.setTelefono("809-000-0000")
+        admin.setCreadoPor("_")
         admin.setIsAdmin(true)
 
         if(admin.validate()) {

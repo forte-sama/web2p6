@@ -7,9 +7,14 @@ class PermisoDepartamento /* implements Serializable */ {
     Departamento departamento
     Boolean activo
 
+    String creadoPor
+    Date dateCreated
+    Date lastUpdated
+
     static belongsTo = [usuario: Usuario]
 
     static constraints = {
+        creadoPor(blank: false, display: false)
         activo(blank: false)
         usuario(blank: false)
         departamento(blank: false, validator: {val,obj ->

@@ -5,7 +5,12 @@ class PertenenciaDepartamento implements Serializable {
     Contacto contacto
     Departamento departamento
 
+    String creadoPor
+    Date dateCreated
+    Date lastUpdated
+
     static constraints = {
+        creadoPor(blank: false, display: false)
         departamento(blank: false, validator: {val,obj ->
             for(PertenenciaDepartamento pd in obj.contacto.relaciones) {
                 if(pd.departamento.id == val.id) {

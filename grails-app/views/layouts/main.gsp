@@ -23,11 +23,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/#">
-                    <i class="fa grails-icon">
-                        <asset:image src="grails-cupsonly-logo-white.svg"/>
-                    </i> Grails
-                </a>
+                %{--<a class="navbar-brand" href="/#">--}%
+                    %{--<i class="fa grails-icon">--}%
+                        %{--<asset:image src="grails-cupsonly-logo-white.svg"/>--}%
+                    %{--</i> Grails--}%
+                %{--</a>--}%
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-right">

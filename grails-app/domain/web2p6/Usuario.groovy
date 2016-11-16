@@ -9,9 +9,14 @@ class Usuario {
     String telefono
     Boolean isAdmin
 
+    String creadoPor = "nada"
+    Date dateCreated
+    Date lastUpdated
+
     static hasMany = [permisos: PermisoDepartamento]
 
     static constraints = {
+        creadoPor(nullable: true, blank: true, display: false)
         email(unique: true,email: true, blank: false)
         password(size: 5..20)
         nombre(blank: false)
@@ -21,4 +26,17 @@ class Usuario {
 
     static mapping = {
     }
+
+//    def beforeInsert() {
+//        if(isAdmin) {
+//            creadoPor = "_"
+//        }
+//        else {
+//            if (session.user) {
+//                creadoPor = session.user.email
+//            } else {
+//                creadoPor = "default"
+//            }
+//        }
+//    }
 }

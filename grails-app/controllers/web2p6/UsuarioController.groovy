@@ -35,6 +35,7 @@ class UsuarioController {
             return
         }
 
+        usuario.creadoPor = session.user.email
         usuario.save flush:true
 
         request.withFormat {
@@ -64,6 +65,7 @@ class UsuarioController {
             return
         }
 
+        usuario.creadoPor = session.user.email
         usuario.save flush:true
 
         request.withFormat {
@@ -113,8 +115,8 @@ class UsuarioController {
     }
 
     def formAgregarPermiso() {
-        def user_id = Integer.parseInt((String)params.get("usuario"))
-        def dept_id = Integer.parseInt((String)params.get("departamento"))
+        Integer user_id = Integer.parseInt((String)params.get("usuario"))
+        Integer dept_id = Integer.parseInt((String)params.get("departamento"))
 
         Usuario u = Usuario.findById(user_id)
         Departamento d = Departamento.findById(dept_id)

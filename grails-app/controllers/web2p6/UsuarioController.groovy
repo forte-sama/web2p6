@@ -122,6 +122,7 @@ class UsuarioController {
         Departamento d = Departamento.findById(dept_id)
 
         PermisoDepartamento pd = new PermisoDepartamento(usuario: u, departamento: d, activo: true)
+        pd.creadoPor = session.user.email
         pd.validate()
 
         if(!pd.hasErrors()) {

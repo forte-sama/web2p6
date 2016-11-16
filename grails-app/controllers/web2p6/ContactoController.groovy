@@ -35,6 +35,7 @@ class ContactoController {
             return
         }
 
+        contacto.creadoPor = session.user.email
         contacto.save flush:true
 
         request.withFormat {
@@ -64,6 +65,7 @@ class ContactoController {
             return
         }
 
+        contacto.creadoPor = session.user.email
         contacto.save flush:true
 
         request.withFormat {
@@ -120,6 +122,7 @@ class ContactoController {
         Departamento d = Departamento.findById(dept_id)
 
         PertenenciaDepartamento pd = new PertenenciaDepartamento(contacto: u, departamento: d, activo: true)
+        pd.creadoPor = session.user.email
         pd.validate()
 
         if(!pd.hasErrors()) {

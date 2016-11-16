@@ -35,6 +35,7 @@ class CategoriaController {
             return
         }
 
+        categoria.creadoPor = session.user.email
         categoria.save flush:true
 
         request.withFormat {
@@ -64,6 +65,7 @@ class CategoriaController {
             return
         }
 
+        categoria.creadoPor = session.user.email
         categoria.save flush:true
 
         request.withFormat {

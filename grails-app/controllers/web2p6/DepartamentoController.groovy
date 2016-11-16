@@ -64,6 +64,7 @@ class DepartamentoController {
             return
         }
 
+        departamento.creadoPor = session.user.email
         departamento.save flush:true
 
         request.withFormat {
@@ -116,5 +117,12 @@ class DepartamentoController {
         }
 
         render(view: 'lista_contactos', model: model)
+    }
+
+    def grafico = {
+        def myDailyActivitiesColumns = [['string', 'Task'], ['number', 'Hours per Day']]
+        def myDailyActivitiesData = [['Work', 11], ['Eat', 2], ['Commute', 2], ['Watch TV', 2], ['Sleep', 7]]
+        render template: "chart", model: ["myDailyActivitiesColumns": myDailyActivitiesColumns,
+                                          "myDailyActivitiesData": myDailyActivitiesData]
     }
 }

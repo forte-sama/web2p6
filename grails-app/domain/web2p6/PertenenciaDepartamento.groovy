@@ -5,7 +5,7 @@ class PertenenciaDepartamento implements Serializable {
     Contacto contacto
     Departamento departamento
 
-    String creadoPor
+    String creadoPor = "nada"
     Date dateCreated
     Date lastUpdated
 

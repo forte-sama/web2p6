@@ -106,4 +106,18 @@ class CategoriaController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def grafico = {
+        List col  = [['string', 'Categoria'], ['number', 'Cantidad de Contactos']]
+        List data = []
+
+        def res = Categoria.findAll()
+
+        for(Categoria d in res) {
+            data << [d.nombre, Contacto.countByCategoria(d)]
+        }
+
+        render (view: 'grafico', model: ["col": col,
+                                         "data": data])
+    }
 }

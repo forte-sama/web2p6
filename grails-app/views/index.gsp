@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+    <gvisualization:apiImport/>
     <meta name="layout" content="main"/>
     <title>Welcome to Grails</title>
 
@@ -17,27 +18,15 @@
                     <p>Cesar Garcia: 2011-0324</p>
                     <p>Frankie Garabito: 2012-0830</p>
                 </div>
-            </div>
-
-            <div class="row">
-                <%
-                    def myDailyActivitiesColumns = [['string', 'Task'], ['number', 'Hours per Day']]
-                    def myDailyActivitiesData = [['Work', 11], ['Eat', 2], ['Commute', 2], ['Watch TV', 2], ['Sleep', 7]]
-                %>
-
-                <gvisualization:pieCoreChart elementId="piechart" title="My Daily Activities" width="${450}" height="${300}"
-                                             columns="${myDailyActivitiesColumns}" data="${myDailyActivitiesData}" />
-                <div id="piechart"></div>
-                %{--<input type="button" value="Render Pie Chart"--}%
-                       %{--onclick="${remoteFunction(controller:'departamento',action:'grafico',update:'chart')}">--}%
-                %{--<br>--}%
-                %{--<div id="chart"></div>--}%
-
-                %{--<div id="piechart"></div>--}%
-                %{--<gvisualization:pieCoreChart dynamicLoading="${true}" elementId="piechart" title="My Daily Activities"--}%
-                                             %{--width="${450}" height="${300}" columns="${myDailyActivitiesColumns}" data="${myDailyActivitiesData}"/>--}%
+                <g:if test="${flash.redirectNoUserMessage}">
+                    <div class="alert alert-danger">
+                        <b>${"Redireccionado al index porque no tiene acceso al recurso solicitado"}</b>
+                    </div>
+                </g:if>
             </div>
         </div>
     </div>
+
+
 </body>
 </html>

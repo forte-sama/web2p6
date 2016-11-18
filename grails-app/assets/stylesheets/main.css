@@ -174,7 +174,11 @@ img {
 }
 
 .nav li.dropdown.open ul.dropdown-menu {
-    background-color: #4D8618;
+    background-color: #cccccc;
+}
+
+ul.dropdown-menu li {
+    display: block;
 }
 
 /* CREATE/EDIT FORMS AND SHOW PAGES */

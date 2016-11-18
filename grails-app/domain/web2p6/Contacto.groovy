@@ -10,7 +10,7 @@ class Contacto {
     String ocupacion
     Categoria categoria
 
-    String creadoPor
+    String creadoPor = "nada"
     Date dateCreated
     Date lastUpdated
 
@@ -33,8 +33,9 @@ class Contacto {
             Contacto c = Contacto.findByTelefonoMovil(val)
 
             if(c) {
-                String dept = c.relaciones.size() > 0 ? c.relaciones.head().departamento.nombre : 'Ninguno'
-                return ['contacto.telefonoMovil.validator',dept]
+                String dept = "Ninguno"
+                if(c.relaciones && c.relaciones.size() > 0) dept = c.relaciones.head().departamento.nombre
+                return ['contacto.telefonoMovil.validator', dept]
             }
             else {
                 return true

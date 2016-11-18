@@ -7,7 +7,7 @@ class PermisoDepartamento /* implements Serializable */ {
     Departamento departamento
     Boolean activo
 
-    String creadoPor
+    String creadoPor = "nada"
     Date dateCreated
     Date lastUpdated
 

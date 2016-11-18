@@ -4,19 +4,15 @@ class Categoria {
 
     String nombre
 
-    String creadoPor
+    String creadoPor = "nada"
     Date dateCreated
     Date lastUpdated
 
     static constraints = {
-        creadoPor(blank: false, display: false)
+        creadoPor(blank: true, display: false)
         nombre(blank: false, unique: true)
     }
 
     static mapping = {
-    }
-
-    def beforeInsert() {
-        creadoPor = session.user.email
     }
 }

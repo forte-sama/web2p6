@@ -12,10 +12,19 @@ class UserOnlyInterceptor {
 
         //si es el controlador de contacto, solo verificar si esta loggeado
         if(params.controller == 'contacto') {
-            return session.user ? true : redirect(url: '/')
+            if(session.user) {
+                return true
+            }
+            else {
+                flash.redirectNoUserMessage = "true"
+                redirect(url: '/')
+            }
         }
         else {
             if (session.user) {
+
+                if(session.user.isAdmin) return true
+
                 //si esta loggeado y se esta manejando un id
                 //ver si el usuario tiene permiso en ese departamento
                 if(params.id) {
@@ -24,6 +33,7 @@ class UserOnlyInterceptor {
                     if (PermisoDepartamento.findByDepartamentoAndUsuario(d, session.user)) {
                         return true
                     } else {
+                        flash.redirectNoUserMessage = "true"
                         redirect(url: '/')
                     }
                 }
@@ -33,6 +43,7 @@ class UserOnlyInterceptor {
                 }
             }
             else {
+                flash.redirectNoUserMessage = "true"
                 redirect(url: '/')
             }
         }

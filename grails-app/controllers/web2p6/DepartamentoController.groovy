@@ -35,6 +35,7 @@ class DepartamentoController {
             return
         }
 
+        departamento.creadoPor = session.user.email
         departamento.save flush:true
 
         request.withFormat {
@@ -106,23 +107,31 @@ class DepartamentoController {
         }
     }
 
-    def lista_contactos(Departamento d) {
+    def lista_contactos(Departamento dept) {
         def model = [:]
 
-        if(d) {
-            List<PertenenciaDepartamento> pd = PertenenciaDepartamento.findAllByDepartamento(d)
+        if(dept) {
+
+            def pd = PertenenciaDepartamento.findAllByDepartamento(dept)
 
             model['relaciones'] = pd
-            model['departamento'] = d
+            model['departamento'] = dept
         }
 
         render(view: 'lista_contactos', model: model)
     }
 
     def grafico = {
-        def myDailyActivitiesColumns = [['string', 'Task'], ['number', 'Hours per Day']]
-        def myDailyActivitiesData = [['Work', 11], ['Eat', 2], ['Commute', 2], ['Watch TV', 2], ['Sleep', 7]]
-        render template: "chart", model: ["myDailyActivitiesColumns": myDailyActivitiesColumns,
-                                          "myDailyActivitiesData": myDailyActivitiesData]
+        List col  = [['string', 'Departamento'], ['number', 'Cantidad de Contactos']]
+        List data = []
+
+        def res = PertenenciaDepartamento.where{}.projections{ distinct 'departamento' }.list()
+
+        for(Departamento d in res) {
+            data << [d.nombre, PertenenciaDepartamento.countByDepartamento(d)]
+        }
+
+        render (view: 'grafico', model: ["col": col,
+                                          "data": data])
     }
 }

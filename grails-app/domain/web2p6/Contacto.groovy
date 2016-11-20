@@ -17,7 +17,6 @@ class Contacto {
     static hasMany = [relaciones: PertenenciaDepartamento]
 
     static constraints = {
-        creadoPor(blank: false, display: false)
         email(email: true, validator: {val,obj ->
             Contacto c = Contacto.findByEmail(val)
 
@@ -46,7 +45,7 @@ class Contacto {
         direccion(blank: false)
         ocupacion(blank: false)
         categoria(blank: false)
-
+        creadoPor(blank: false, display: false)
     }
 
     static mapping = {

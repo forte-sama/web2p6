@@ -125,12 +125,11 @@ class UsuarioController {
         pd.creadoPor = session.user.email
         pd.validate()
 
-        if(!pd.hasErrors()) {
+        if (!pd.hasErrors()) {
             pd.save(flush: true)
 
             flash.message = "Permiso para ${u.email} en ${d.nombre} creado."
-        }
-        else {
+        } else {
             flash.error = "Ya usuario ${u.email} tiene acceso a ${d.nombre}."
         }
 

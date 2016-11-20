@@ -121,19 +121,25 @@ class ContactoController {
         Contacto u = Contacto.findById(cont_id)
         Departamento d = Departamento.findById(dept_id)
 
-        PertenenciaDepartamento pd = new PertenenciaDepartamento(contacto: u, departamento: d, activo: true)
-        pd.creadoPor = session.user.email
-        pd.validate()
+        if(PermisoDepartamento.findByDepartamentoAndUsuario(d,session.user)) {
+            PertenenciaDepartamento pd = new PertenenciaDepartamento(contacto: u, departamento: d, activo: true)
+            pd.creadoPor = session.user.email
+            pd.validate()
 
-        if(!pd.hasErrors()) {
-            pd.save(flush: true)
+            if(!pd.hasErrors()) {
+                pd.save(flush: true)
 
-            flash.message = "${u.email} fue agregado como contacto en ${d.nombre}."
+                flash.message = "${u.email} fue agregado como contacto en ${d.nombre}."
+            }
+            else {
+                flash.error = "Ya ${u.email} es un contacto de ${d.nombre}. No es posible duplicar."
+            }
+
+            redirect(controller: 'contacto', action: 'agregar_relacion')
         }
         else {
-            flash.error = "Ya ${u.email} es un contacto de ${d.nombre}. No es posible duplicar."
+            flash.error = "El usuario actual no tiene permiso para ${d.nombre}"
+            redirect(controller: 'contacto', action: 'agregar_relacion')
         }
-
-        redirect(controller: 'contacto', action: 'agregar_relacion')
     }
 }

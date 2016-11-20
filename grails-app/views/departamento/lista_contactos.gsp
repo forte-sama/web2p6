@@ -11,38 +11,46 @@
 <div class="container" id="contenedorCrearUsuario">
     <div class = "col col-md-6 col-md-offset-3">
         <br>
-        <br>
-        <g:if test="${departamento}">
-            <div class = "panel panel-default">
-                <div class = "panel-heading">
-                    <h1>Listado de contactos de <b>${departamento.nombre}</b>:</h1>
+        <g:if test="${relaciones && relaciones.size() > 0}">
+            <g:each in="${relaciones}" var="relacion">
+                <div class = "panel panel-default">
+                    <div class = "panel-heading">
+                        <h1>Contactos de <b>${relacion.key}</b>:</h1>
+                    </div>
+                    <div class = "panel-body">
+                        <g:if test="${relacion.value.size() > 0}">
+                        <table class="table table-hover">
+                            <thead>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Movil</th>
+                            </thead>
+                            <tbody>
+                                <g:each in="${relacion.value}" var="pd">
+                                    <tr>
+                                        <td>${pd.contacto.nombre} ${pd.contacto.apellido}</td>
+                                        <td>${pd.contacto.email}</td>
+                                        <td>${pd.contacto.telefonoMovil}</td>
+                                    </tr>
+                                </g:each>
+                            </tbody>
+                        </table>
+                        </g:if>
+                        <g:else>
+                        <div class="alert alert-info">
+                            <p>Este departamento no tiene contactos todavia...</p>
+                            <a href="/contacto/agregar_relacion" class="btn btn-success">Agregar uno</a>
+                        </div>
+                        </g:else>
+                    </div>
                 </div>
-                <div class = "panel-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
-                        <th>Movil</th>
-                        </thead>
-                        <tbody>
-                            <g:each in="${relaciones}" var="relacion">
-                                <tr>
-                                    <td>${relacion.contacto.nombre}</td>
-                                    <td>${relacion.contacto.apellido}</td>
-                                    <td>${relacion.contacto.email}</td>
-                                    <td>${relacion.contacto.telefonoMovil}</td>
-                                </tr>
-                            </g:each>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <br>
+            </g:each>
         </g:if>
         <g:else>
-            <span class="alert alert-danger">
-                No hay un departamento con ese identificador
-            </span>
+            <div class="alert alert-info">
+                <p>Este usuario no tiene permiso a ningun departamento, o en los departamentos que puede no tienen contactos</p>
+            </div>
         </g:else>
     </div>
 

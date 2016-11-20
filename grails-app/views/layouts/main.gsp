@@ -49,16 +49,17 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categoria <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/categoria">Home</a></li>
-                        <li><a href="/categoria/create">Crear Usuario</a></li>
-                        <li><a href="/categoria/grafico">Distribucion de contactos</a></li>
+                        <li><a href="/categoria/create">Crear Categoria</a></li>
+                        <li><a href="/categoria/grafico">Contactos por Categoria</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Departamento <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/departamento">Home</a></li>
-                        <li><a href="/departamento/create">Crear Usuario</a></li>
-                        <li><a href="/departamento/grafico">Distribucion de contactos</a></li>
+                        <li><a href="/departamento/create">Crear Departamento</a></li>
+                        <li><a href="/departamento/lista_contactos">Lista de Contactos</a></li>
+                        <li><a href="/departamento/grafico">Contactos por Departamento</a></li>
                     </ul>
                 </li>
             </ul>

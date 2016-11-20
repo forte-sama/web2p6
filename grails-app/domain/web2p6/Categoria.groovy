@@ -9,8 +9,8 @@ class Categoria {
     Date lastUpdated
 
     static constraints = {
-        creadoPor(blank: true, display: false)
         nombre(blank: false, unique: true)
+        creadoPor(blank: true, display: false)
     }
 
     static mapping = {

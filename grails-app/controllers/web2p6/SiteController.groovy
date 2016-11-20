@@ -18,7 +18,7 @@ class SiteController {
     def logout() {
         session.invalidate()
 
-        redirect(uri: request.getHeader('referer'))
+        redirect(uri: '/')
     }
 
     def processLogin() {
@@ -36,7 +36,7 @@ class SiteController {
         }
 
         if(success) {
-            redirect(controller: 'usuario', action: 'index')
+            redirect(controller: 'contacto', action: 'index')
         }
         else {
             redirect(controller: 'site', action: 'login')

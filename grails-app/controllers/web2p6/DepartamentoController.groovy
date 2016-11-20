@@ -107,17 +107,24 @@ class DepartamentoController {
         }
     }
 
-    def lista_contactos(Departamento dept) {
+    def lista_contactos() { //(Departamento dept) {
         def model = [:]
 
-        if(dept) {
+        Map dept_contactos = [:]
 
-            def pd = PertenenciaDepartamento.findAllByDepartamento(dept)
-
-            model['relaciones'] = pd
-            model['departamento'] = dept
+        List departamentos_permitidos = []
+        if(session.user.isAdmin) {
+            departamentos_permitidos = PermisoDepartamento.findAll()
+        }
+        else {
+            departamentos_permitidos = PermisoDepartamento.findAllByUsuario((Usuario) session.user)
         }
 
+        for(PermisoDepartamento pd in departamentos_permitidos) {
+            dept_contactos[pd.departamento.nombre] = PertenenciaDepartamento.findAllByDepartamento(pd.departamento)
+        }
+
+        model['relaciones'] = dept_contactos
         render(view: 'lista_contactos', model: model)
     }
 

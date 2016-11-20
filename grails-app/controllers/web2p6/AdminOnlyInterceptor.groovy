@@ -15,8 +15,6 @@ class AdminOnlyInterceptor {
 
         boolean valid = true
 
-        println params
-
         if(u) {
             if(u.isAdmin) {
                 return true

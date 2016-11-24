@@ -121,7 +121,11 @@ class ContactoController {
         Contacto u = Contacto.findById(cont_id)
         Departamento d = Departamento.findById(dept_id)
 
-        if(PermisoDepartamento.findByDepartamentoAndUsuario(d,session.user)) {
+        boolean tienePermiso = PermisoDepartamento.countByDepartamentoAndUsuario(d,(Usuario)session.user)
+
+        boolean puedeSeguir = session.user.isAdmin || tienePermiso
+
+        if(puedeSeguir) {
             PertenenciaDepartamento pd = new PertenenciaDepartamento(contacto: u, departamento: d, activo: true)
             pd.creadoPor = session.user.email
             pd.validate()

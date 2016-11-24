@@ -21,7 +21,10 @@ class Contacto {
             Contacto c = Contacto.findByEmail(val)
 
             if(c) {
-                String dept = c.relaciones.size() > 0 ? c.relaciones.head().departamento.nombre : 'Ninguno'
+                String dept = "Ninguno"
+                if(c.relaciones) {
+                    dept = c.relaciones.head().departamento.nombre
+                }
                 return ['contacto.email.validator',dept]
             }
             else {

@@ -107,7 +107,7 @@ class DepartamentoController {
         }
     }
 
-    def lista_contactos() { //(Departamento dept) {
+    def lista_contactos() {
         def model = [:]
 
         Map dept_contactos = [:]
@@ -138,7 +138,6 @@ class DepartamentoController {
             data << [d.nombre, PertenenciaDepartamento.countByDepartamento(d)]
         }
 
-        render (view: 'grafico', model: ["col": col,
-                                          "data": data])
+        render (view: 'grafico', model: ["col": col, "data": data])
     }
 }
